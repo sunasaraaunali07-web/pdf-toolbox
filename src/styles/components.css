@@ -1,0 +1,305 @@
+/* ============================================================
+   Component Styles
+   Individual UI component styles: hero, tool cards, steps, buttons.
+   ============================================================ */
+
+/* ---------- Hero Content ---------- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-5);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-badge {
+    background-color: color-mix(in oklab, var(--color-primary) 20%, var(--color-bg-muted));
+    color: color-mix(in oklab, var(--color-primary) 70%, white);
+  }
+}
+
+.hero-title {
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+  font-weight: var(--weight-extrabold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: var(--space-5);
+}
+
+.hero-subtitle {
+  font-size: clamp(var(--text-base), 2vw, var(--text-lg));
+  color: var(--color-text-muted);
+  max-width: 46ch;
+  margin-bottom: var(--space-8);
+  line-height: var(--leading-normal);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  border: none;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-sm), 0 0 0 0 var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- Hero PDF Visual ---------- */
+.hero-visual {
+  position: relative;
+  width: 240px;
+  height: 300px;
+}
+
+.hero-pdf-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.pdf-card {
+  position: absolute;
+  width: 180px;
+  height: 240px;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.pdf-card--back {
+  bottom: 0;
+  right: 0;
+  transform: rotate(8deg);
+  background-color: var(--color-bg-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+.pdf-card--mid {
+  bottom: var(--space-5);
+  right: var(--space-6);
+  transform: rotate(3deg);
+  background-color: var(--color-bg-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+.pdf-card--front {
+  bottom: var(--space-10);
+  right: var(--space-12);
+  transform: rotate(-2deg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pdf-card-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.pdf-card-lines span {
+  display: block;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-muted);
+}
+
+.pdf-card-lines span:nth-child(1) { width: 80%; }
+.pdf-card-lines span:nth-child(2) { width: 90%; }
+.pdf-card-lines span:nth-child(3) { width: 65%; }
+.pdf-card-lines span:nth-child(4) { width: 85%; }
+.pdf-card-lines span:nth-child(5) { width: 40%; background-color: var(--color-primary-light); }
+
+/* ---------- Tool Grid ---------- */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+.tool-card-wrapper {
+  container-type: inline-size;
+}
+
+.tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-5);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  position: relative;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.tool-card:not(.tool-card--disabled):hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.tool-card--disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.tool-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+/* Apply accent color per-card via data attribute */
+.tool-card[data-accent="accent-blue"]   .tool-card__icon { color: var(--accent-blue); }
+.tool-card[data-accent="accent-green"]  .tool-card__icon { color: var(--accent-green); }
+.tool-card[data-accent="accent-orange"] .tool-card__icon { color: var(--accent-orange); }
+.tool-card[data-accent="accent-purple"] .tool-card__icon { color: var(--accent-purple); }
+.tool-card[data-accent="accent-pink"]   .tool-card__icon { color: var(--accent-pink); }
+.tool-card[data-accent="accent-teal"]   .tool-card__icon { color: var(--accent-teal); }
+.tool-card[data-accent="accent-red"]    .tool-card__icon { color: var(--accent-red); }
+.tool-card[data-accent="accent-yellow"] .tool-card__icon { color: var(--accent-yellow); }
+
+.tool-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tool-card__title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+  line-height: var(--leading-tight);
+}
+
+.tool-card__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+
+/* ---------- Badge ---------- */
+.badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge--soon {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-subtle);
+}
+
+/* ---------- How It Works Steps ---------- */
+.steps-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--space-8);
+  counter-reset: steps;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+}
+
+.step__number {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.step__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+.step__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.step__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  max-width: 28ch;
+  margin-inline: auto;
+}
+
+/* Reduced motion: remove card lift animation */
+@media (prefers-reduced-motion: reduce) {
+  .tool-card {
+    transition: none;
+  }
+}
