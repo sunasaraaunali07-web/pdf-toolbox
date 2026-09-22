@@ -78,7 +78,7 @@ Start the local development server with hot module replacement (HMR):
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open https://pdf-toolbox-omega.vercel.app/ in your browser.
 
 ### Production Build
 
