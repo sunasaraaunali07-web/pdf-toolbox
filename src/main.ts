@@ -83,8 +83,14 @@ function navigate(): void {
     currentCleanup = page.init();
     // Update document title
     document.title = `${hash.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ')} — PDF Toolbox`;
+  } else if (hash === 'tools') {
+    // Tools selection page — shows only the tool grid (no hero / how-it-works).
+    // All tool "Back" buttons navigate here.
+    main.innerHTML = renderToolGrid();
+    main.scrollIntoView({ behavior: 'instant' });
+    document.title = 'PDF Toolbox — All Tools';
   } else {
-    // Home page
+    // Full home page (hero + tools + how it works)
     main.innerHTML = [
       renderHero(),
       renderToolGrid(),

@@ -242,7 +242,7 @@ export function init(): () => void {
     updateUI();
   });
 
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnMerge.addEventListener('click', async () => {
     if (files.length < 2) return;

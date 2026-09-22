@@ -189,7 +189,7 @@ export function init(): () => void {
     images = [];
     updateUI();
   });
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnConvert.addEventListener('click', async () => {
     if (images.length === 0) return;

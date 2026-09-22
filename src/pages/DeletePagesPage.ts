@@ -210,7 +210,7 @@ export function init(): () => void {
     hide(workArea); show(dropZone); hide(resultPanel); clearError();
   });
   btnDeselectAll.addEventListener('click', () => { markedForDeletion.clear(); updateSelectionUI(); });
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnDelete.addEventListener('click', async () => {
     if (!currentBytes || !currentFile || markedForDeletion.size === 0) return;

@@ -189,7 +189,7 @@ export function init(): () => void {
     hide(resultPanel);
   });
 
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnSplit.addEventListener('click', async () => {
     if (!currentBytes || !currentFile) return;

@@ -149,29 +149,17 @@ export function init(): () => void {
       currentBytes = await readFileAsUint8Array(file);
       currentFile = file;
 
-      const thumbs = await renderThumbnails(currentBytes, 160, (_done, total) => {
-        numPages = total;
-        countEl.textContent = `${file.name} · ${formatBytes(file.size)} · ${total} pages`;
-        // Select all pages by default
-        for (let i = 1; i <= total; i++) selectedPages.add(i);
-
-        pageGrid.innerHTML = thumbs.map((src, i) => /* html */ `
-          <div class="page-thumb ${selectedPages.has(i + 1) ? 'selected' : ''}" data-page="${i + 1}"
-               role="listitem" aria-label="Page ${i + 1}" tabindex="0">
-            <img src="${src}" alt="Page ${i + 1}" loading="lazy">
-            <div class="page-thumb-label">Page ${i + 1}</div>
-            <div class="page-thumb-check">${ICON_CHECK}</div>
-          </div>
-        `).join('');
-
-        attachThumbHandlers();
-        hide(thumbLoading);
-        show(thumbArea);
-        updateSelectionUI();
-      });
-
-      // Update after all thumbs are done
+      // Await the FULL result array before touching 'thumbs' — the previous code
+      // referenced 'thumbs' inside an onPageDone callback that fired before the
+      // outer await resolved, causing "cannot access thumbs before initialisation".
+      const thumbs = await renderThumbnails(currentBytes, 160);
       numPages = thumbs.length;
+
+      countEl.textContent = `${file.name} · ${formatBytes(file.size)} · ${numPages} page${numPages !== 1 ? 's' : ''}`;
+
+      // Select all pages by default
+      for (let i = 1; i <= numPages; i++) selectedPages.add(i);
+
       pageGrid.innerHTML = thumbs.map((src, i) => /* html */ `
         <div class="page-thumb ${selectedPages.has(i + 1) ? 'selected' : ''}" data-page="${i + 1}"
              role="listitem" aria-label="Page ${i + 1}" tabindex="0">
@@ -180,6 +168,7 @@ export function init(): () => void {
           <div class="page-thumb-check">${ICON_CHECK}</div>
         </div>
       `).join('');
+
       attachThumbHandlers();
       hide(thumbLoading);
       show(thumbArea);
@@ -236,7 +225,7 @@ export function init(): () => void {
     clearError();
   });
 
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnConvert.addEventListener('click', async () => {
     if (!currentBytes || !currentFile || selectedPages.size === 0) return;

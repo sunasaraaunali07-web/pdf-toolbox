@@ -218,7 +218,7 @@ export function init(): () => void {
     currentFile = null; currentBytes = null; pageOrder = []; thumbSrcs = [];
     hide(workArea); show(dropZone); hide(resultPanel); clearError();
   });
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnSave.addEventListener('click', async () => {
     if (!currentBytes || !currentFile) return;

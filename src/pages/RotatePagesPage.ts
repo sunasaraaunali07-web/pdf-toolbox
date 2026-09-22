@@ -214,7 +214,7 @@ export function init(): () => void {
   btnRotateAllCcw.addEventListener('click', () => {
     rotations = rotations.map((r) => (r + 270) % 360); renderGrid();
   });
-  btnBack.addEventListener('click', () => { window.location.hash = ''; });
+  btnBack.addEventListener('click', () => { window.location.hash = '#tools'; });
 
   btnApply.addEventListener('click', async () => {
     if (!currentBytes || !currentFile) return;
