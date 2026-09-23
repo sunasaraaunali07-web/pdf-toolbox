@@ -70,12 +70,6 @@ Clone or open the project folder, then install dependencies:
 npm install
 ```
 
-### Development Server
-
-Start the local development server with hot module replacement (HMR):
-
-```bash
-npm run dev
 ```
 
 Open https://pdf-toolbox-omega.vercel.app/ in your browser.
